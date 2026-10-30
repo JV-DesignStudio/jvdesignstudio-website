@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  # A1994 — clean build check: npm run build must succeed and produce no unexpected file drift
+  build:
+    name: Clean build (A1994)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run build
+        run: node scripts/build.js
+      - name: Verify dist/ contents (no drift)
+        run: |
+          echo "Files in dist/:"
+          ls -1 dist/
+          # The build script already exits non-zero on drift; this step makes it visible in the log.
+
+  # A1995 — service worker coverage: every local asset in index.html must be in sw.js CACHED_FILES
+  sw-coverage:
+    name: SW offline coverage (A1995)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check SW cache covers all local assets
+        run: node scripts/check-sw-coverage.js

@@ -91,7 +91,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 logo-container">
                     <a href="#">
-                        <img src="Logo.jpg" alt="JV Design Studio Logo" class="logo-img">
+                        <img src="Logo Design.png" alt="JV Design Studio Logo" class="logo-img">
                     </a>
                 </div>
                 <nav class="flex items-center space-x-6">
@@ -508,6 +508,11 @@
                 });
             }
         });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
     </script>
 </body>
 </html>

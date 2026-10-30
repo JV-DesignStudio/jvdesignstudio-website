@@ -1,0 +1,10 @@
+{
+  "name": "jvdesignstudio-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test:sw-coverage": "node scripts/check-sw-coverage.js",
+    "test": "npm run test:sw-coverage"
+  }
+}
